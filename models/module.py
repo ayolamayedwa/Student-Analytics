@@ -4,6 +4,7 @@ class Module:
         self.name = name
         self.credits = credits
         self.assessments = []
+        self.fully_marked = False
 
     def add_assessment(self, assessment):
         current_total = 0
@@ -19,8 +20,11 @@ class Module:
     def remove_assessment(self, assessment):
         if assessment in self.assessments:
             self.assessments.remove(assessment)
+    def update_assessment_marks(self, assessment, updated_mark):
+        assessment.mark = updated_mark # do error management
 
     def calculate_average(self):
+
         total_weighted_marks = 0
         total_weight_used = 0
 
