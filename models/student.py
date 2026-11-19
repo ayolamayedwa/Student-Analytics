@@ -1,5 +1,5 @@
 import datetime
-
+from exceptions import NotFoundError
 class Student:
     def __init__(self, student_id, year, name, email):
         self.name = name
@@ -20,7 +20,7 @@ class Student:
 
     def remove_module(self, module):
         if module in self.modules:
-            self.modules.remove(module)
+            self.modules.remove(module) # add exception for when the module is not in the student's modules
 
     def get_student_id(self):
         return self.student_id
@@ -56,7 +56,7 @@ class Student:
         for module in self.modules:
             if module.code == code:
                 return module.calculate_average()
-        return None # Module not found
+        return None # Module not found so throw an exception
 
     def get_weighted_average(self):
         all_credits = []
