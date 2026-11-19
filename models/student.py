@@ -8,12 +8,11 @@ class Student:
         self.modules = []
         self.sessions = []
         self.year_of_study = year
-        self.num_of_modules = 0
+        self.num_of_modules = len(self.modules)
 
 #Quick access and changes
     def add_module(self, module):
         self.modules.append(module)
-        number_of_modules = len(self.modules)
 
     def get_modules(self):
         return self.modules
@@ -56,7 +55,7 @@ class Student:
         for module in self.modules:
             if module.code == code:
                 return module.calculate_average()
-        return None # Module not found so throw an exception
+        raise NotFoundError # Module not found so throw an exception
 
     def get_weighted_average(self):
         all_credits = []
@@ -78,7 +77,7 @@ class Student:
             average = module.calculate_average()
             if average is not None:
                 all_marks.append(average)
-        if all_marks == []:
+        if not all_marks:
             return None
         return sum(all_marks) / len(all_marks)
 
