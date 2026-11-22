@@ -32,6 +32,6 @@ class Assessment:
         return self._date_time
     @date_time.setter
     def date_time(self, date):
-        if date is not datetime.datetime:
+        if not isinstance(date, datetime.datetime):
             raise ValueError(f"date_time must be datetime, got {date}")
         self._date_time = date
